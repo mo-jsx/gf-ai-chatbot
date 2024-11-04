@@ -1,5 +1,12 @@
+import { BaseLayout } from './ui/layouts';
+import Chatbot from './ui/organisms/Chatbot';
+
 function App() {
-  return <h1 data-testid="app">App</h1>;
+  return (
+    <BaseLayout data-testid="app">
+      <Chatbot />
+    </BaseLayout>
+  );
 }
 
 export default App;
