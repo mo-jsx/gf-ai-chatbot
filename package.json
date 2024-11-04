@@ -13,7 +13,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "eventsource-parser": "^3.0.0",
+    "immer": "^10.1.1",
     "katex": "^0.16.11",
+    "nanoid": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
@@ -23,7 +26,8 @@
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
-    "remark-rehype": "^11.1.1"
+    "remark-rehype": "^11.1.1",
+    "use-immer": "^0.10.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
