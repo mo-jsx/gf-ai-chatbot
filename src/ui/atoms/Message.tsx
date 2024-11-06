@@ -61,6 +61,39 @@ export default function Message(props: IMessage) {
                 {a.children}
               </a>
             ),
+            h1: (h1, ...props) => (
+              <h1 className="font-bold text-4xl py-4" {...props}>
+                {h1.children}
+              </h1>
+            ),
+            h2: (h2, ...props) => (
+              <h2 className="font-bold text-2xl py-3" {...props}>
+                {h2.children}
+              </h2>
+            ),
+            h3: (h3, ...props) => (
+              <h3 className="font-bold text-lg py-2" {...props}>
+                {h3.children}
+              </h3>
+            ),
+            p: (p, ...props) => (
+              <p className="pb-4" {...props}>
+                {p.children}
+              </p>
+            ),
+            pre: (pre, ...props) => (
+              <pre
+                className="bg-blue-200 text-[12px] text-wrap p-2 border-2 border-blue-800 rounded-lg"
+                {...props}
+              >
+                {pre.children}
+              </pre>
+            ),
+            code: (code, ...props) => (
+              <code className="my-1" {...props}>
+                {code.children}
+              </code>
+            ),
           }}
           className="text-wrap"
           data-testid="geppetto-message-content"
