@@ -5,7 +5,7 @@ interface BaseLayoutProps {
 
 function BaseLayout({ children, ...rest }: BaseLayoutProps) {
   return (
-    <div className="w-full h-[100vh] bg-white" {...rest}>
+    <div className="flex flex-col w-full h-screen bg-white" {...rest}>
       {children}
     </div>
   );
