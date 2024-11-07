@@ -35,7 +35,7 @@ export default function Message(props: IMessage) {
       >
         <img
           src={role == 'geppetto' ? geppettoIcon : userIcon}
-          width={36}
+          width={42}
           alt={`${role} icon`}
           data-testid="chat-message-avatar"
         />
