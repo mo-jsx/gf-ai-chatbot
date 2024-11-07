@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EventProps, MessageProps } from '../../types';
 import { ChatInput, ChatMessages } from '../molecules';
 import { useImmer } from 'use-immer';
+import loadConversation from '../../utils/loadConversation';
+import saveConversation from '../../utils/saveConversation';
+import { ResetChat } from '../atoms';
 
 function Chatbot() {
   const [chatMessages, setChatMessages] = useImmer<MessageProps[] | []>([]);
@@ -9,10 +12,19 @@ function Chatbot() {
   const [isStreaming, setIsStreaming] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
-  // Handle markdown
-  const handleMarkdown = (i: number, string: string) => {
-    let chunk = i == 0 ? string.substring(22) : string;
+  // Load chat from localStorage if existing
+  useEffect(() => {
+    setChatMessages(loadConversation());
+  }, []);
 
+  // Save chat to localStorage
+  useEffect(() => {
+    saveConversation(chatMessages);
+    console.log(chatMessages);
+  }, [chatMessages]);
+
+  // Handle markdown
+  const handleMarkdown = (i: number, chunk: string) => {
     chunk = chunk.replace(
       'markdownum',
       '<a href="https://wikipedia.com/wiki/Markdown">Markdownum</a>',
@@ -84,6 +96,7 @@ function Chatbot() {
         setChatMessages={setChatMessages}
         startSse={startSse}
       />
+      {!!chatMessages.length && <ResetChat setMessages={setChatMessages} />}
     </>
   );
 }
