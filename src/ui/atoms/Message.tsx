@@ -35,8 +35,8 @@ export default function Message(props: IMessage) {
       >
         <img
           src={role == 'geppetto' ? geppettoIcon : userIcon}
-          width={42}
           alt={`${role} icon`}
+          className="w-[48px] h-[48px]"
           data-testid="chat-message-avatar"
         />
         <h3 className="mt-2 ml-2">{role == 'geppetto' ? 'Geppetto' : ''}</h3>
@@ -83,7 +83,7 @@ export default function Message(props: IMessage) {
             ),
             pre: (pre, ...props) => (
               <pre
-                className="bg-blue-200 text-[12px] text-wrap p-2 border-2 border-blue-800 rounded-lg"
+                className="bg-blue-200 text-[12px] text-wrap p-2 border-2 border-blue-800"
                 {...props}
               >
                 {pre.children}
@@ -95,14 +95,14 @@ export default function Message(props: IMessage) {
               </code>
             ),
           }}
-          className="text-wrap"
+          className="text-wrap break-words"
           data-testid="geppetto-message-content"
         >
           {content}
         </ReactMarkdown>
       ) : (
         <div
-          className="text-wrap whitespace-pre-line"
+          className="text-wrap whitespace-pre-line break-words"
           data-testid="user-message-content"
         >
           {content}
