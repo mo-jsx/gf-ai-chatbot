@@ -11,7 +11,7 @@ function PromptInput(props: PromptInputProps) {
   return (
     <textarea
       ref={textareaRef}
-      className="h-12 px-4 py-2 resize-none w-[100%] border-2 border-blue-400 rounded-full"
+      className="h-12 px-4 py-2 overflow-y-hidden resize-none w-[100%] border-2 border-blue-400 rounded-full"
       rows={1}
       value={newPrompt}
       onChange={(e) => setNewPrompt(e.target.value)}
