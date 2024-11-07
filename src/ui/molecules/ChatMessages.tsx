@@ -1,6 +1,6 @@
 import { MessageProps } from '../../types';
 import { Message, WelcomeMessage } from '../atoms';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ChatMessagesProps {
   messages: MessageProps[];
@@ -8,17 +8,32 @@ interface ChatMessagesProps {
 }
 
 function ChatMessages({ messages, isFetching }: ChatMessagesProps) {
+  const [stickToBottom, setStickToBottom] = useState(true);
   const scrollContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (scrollContentRef.current) {
+    if (stickToBottom && scrollContentRef.current) {
       scrollContentRef.current.scrollTop =
         scrollContentRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, stickToBottom]);
+
+  const handleScroll = () => {
+    if (scrollContentRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } =
+        scrollContentRef.current;
+
+      const isAtBottom = scrollHeight - scrollTop === clientHeight;
+      setStickToBottom(isAtBottom);
+    }
+  };
 
   return (
-    <div className="flex-1 overflow-y-auto py-5 px-2" ref={scrollContentRef}>
+    <div
+      className="flex-1 overflow-y-auto py-5 px-2"
+      ref={scrollContentRef}
+      onScroll={handleScroll}
+    >
       <div
         className="w-full md:w-5/6 mx-auto xl:w-1/2"
         data-testid="chat-messages"
