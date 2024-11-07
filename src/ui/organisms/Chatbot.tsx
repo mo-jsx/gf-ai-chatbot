@@ -12,16 +12,17 @@ function Chatbot() {
   const [isStreaming, setIsStreaming] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
-  // Load chat from localStorage if existing
-  useEffect(() => {
-    setChatMessages(loadConversation());
-  }, []);
-
   // Save chat to localStorage
   useEffect(() => {
-    saveConversation(chatMessages);
-    console.log(chatMessages);
+    if (chatMessages.length != 0) {
+      saveConversation(chatMessages);
+    }
   }, [chatMessages]);
+
+  // Load chat from localStorage if existing
+  useEffect(() => {
+    setChatMessages(() => loadConversation());
+  }, []);
 
   // Handle markdown
   const handleMarkdown = (i: number, chunk: string) => {
@@ -61,6 +62,10 @@ function Chatbot() {
 
         case 'error':
           setIsFetching(false);
+          setChatMessages((draft) => {
+            draft[draft.length - 1].content =
+              '<h2 className="font-bold text-red-400 text-center">An error has occurred while fetching our servers!</h2>';
+          });
           eventSource.close();
           console.error('SSE error');
           throw Error('SSE error');
@@ -83,6 +88,7 @@ function Chatbot() {
         draft[draft.length - 1].content =
           '<h2 className="font-bold text-red-400 text-center">An error has occurred while fetching our servers!</h2>';
       });
+      setIsStreaming(false);
       eventSource.close();
     };
   };
