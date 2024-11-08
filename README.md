@@ -4,6 +4,26 @@
 
 A special thanks to **Thijs** for this assignment, which brought me back into the world of text processing and abstract syntax trees (AST). This experience has rekindled my interest for text processing and manipulation, and allowed me to explore convenient ways to manipulate texts in different formats, which was very enjoyable.
 
+## Meeting requirements & Features completion
+
+✅ Maintaining a local history of the conversation.
+
+✅ Reset the conversation.
+
+✅ Sticky auto-scroll when the backend is streaming.
+
+✅ Implementation of a testing strategy.
+
+✅ Unstick/re-stick the auto-scroll.
+
+🟨 Parsing markd in real-time.
+
+✅ Detect CTAs and style them differently.
+
+✅ Following modern UI/UX principles for an enhanced UX.
+
+✅ Modular code structure to allow reusable component and implementation of new features.
+
 ## Table of Contents
 
 - [Tech Stack](#tech-stack)
