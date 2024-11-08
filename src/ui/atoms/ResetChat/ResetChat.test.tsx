@@ -13,7 +13,9 @@ describe('<ResetChat />', () => {
   test('Reset chat history on click', () => {
     render(
       <ResetChat
-        setMessages={function (value: SetStateAction<MessageProps[]>): void {}}
+        setMessages={function (value: SetStateAction<MessageProps[]>): void {
+          console.log(value);
+        }}
       />,
     );
     const chatHistoryBeforeClick = localStorage.getItem('chatHistory');
