@@ -6,10 +6,11 @@ interface ChatInputProps {
   setChatMessages: React.Dispatch<React.SetStateAction<MessageProps[]>>;
   startSse: () => void;
   isStreaming: boolean;
+  scrollContentRef: React.RefObject<HTMLDivElement>;
 }
 
 export default function ChatInput(props: ChatInputProps) {
-  const { setChatMessages, isStreaming, startSse } = props;
+  const { setChatMessages, isStreaming, startSse, scrollContentRef } = props;
 
   const [newPrompt, setNewPrompt] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -32,6 +33,7 @@ export default function ChatInput(props: ChatInputProps) {
     setChatMessages((draft) => [...draft, newPrompt, newGeppettoMessage]);
     setNewPrompt('');
     startSse();
+    scrollContentRef.current?.scrollIntoView({ behavior: 'instant' });
   }
 
   // Send prompt on Enter keydown
@@ -42,6 +44,7 @@ export default function ChatInput(props: ChatInputProps) {
       !!newPrompt.length
     ) {
       e.preventDefault();
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       textareaRef.current?.focus;
       submitNewPrompt(newPrompt);
     }
@@ -51,6 +54,7 @@ export default function ChatInput(props: ChatInputProps) {
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     if (!isStreaming && !!newPrompt.length) {
       e.preventDefault();
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       textareaRef.current?.focus;
       submitNewPrompt(newPrompt);
     }

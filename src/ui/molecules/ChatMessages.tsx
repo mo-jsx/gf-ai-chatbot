@@ -1,21 +1,26 @@
 import { MessageProps } from '../../types';
 import { Message, WelcomeMessage } from '../atoms';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ChatMessagesProps {
   messages: MessageProps[];
   isFetching: boolean;
+  scrollContentRef: React.RefObject<HTMLDivElement>;
 }
 
-function ChatMessages({ messages, isFetching }: ChatMessagesProps) {
+function ChatMessages({
+  messages,
+  isFetching,
+  scrollContentRef,
+}: ChatMessagesProps) {
   const [stickToBottom, setStickToBottom] = useState(true);
-  const scrollContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (stickToBottom && scrollContentRef.current) {
       scrollContentRef.current.scrollTop =
         scrollContentRef.current.scrollHeight;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages, stickToBottom]);
 
   const handleScroll = () => {
@@ -41,7 +46,7 @@ function ChatMessages({ messages, isFetching }: ChatMessagesProps) {
         {messages.length == 0 ? (
           <WelcomeMessage />
         ) : (
-          <h1 className="pb-4 text-center" data-testid="chat-heading-message">
+          <h1 className="pb-12 text-center" data-testid="chat-heading-message">
             Chat with <span className="text-purple-400 italic">Geppetto!</span>
           </h1>
         )}
