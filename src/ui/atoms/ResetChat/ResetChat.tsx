@@ -1,5 +1,5 @@
-import clearIcon from '../../assets/delete.webp';
-import { MessageProps } from '../../types';
+import clearIcon from '../../../assets/delete.webp';
+import { MessageProps } from '../../../types';
 
 interface RestartChatProps {
   setMessages: React.Dispatch<React.SetStateAction<MessageProps[]>>;
@@ -19,6 +19,7 @@ function RestartChat(props: RestartChatProps) {
       className="absolute bottom-20 md:bottom-11 right-1 md:right-5 xl:right-10"
       title="Clear chat"
       onClick={clearChatHistory}
+      data-testid="reset-chat"
     >
       <img id="clear_chat" src={clearIcon} width={32} alt="clear chat icon" />
     </button>

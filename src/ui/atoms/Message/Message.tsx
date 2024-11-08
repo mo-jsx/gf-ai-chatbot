@@ -4,10 +4,10 @@ import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import remarkBreaks from 'remark-breaks';
 import remarkMath from 'remark-math';
-import geppettoIcon from '../../assets/bot.webp';
-import userIcon from '../../assets/user.webp';
-import { MessageProps } from '../../types';
-import Loader from './Loader';
+import geppettoIcon from '../../../assets/bot.webp';
+import userIcon from '../../../assets/user.webp';
+import { MessageProps } from '../../../types';
+import Loader from '../Loader';
 
 interface IMessage extends MessageProps {
   isGeppettoLastMessage?: boolean;
